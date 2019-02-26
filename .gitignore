@@ -1,2 +1,6 @@
 
 \.DS_Store
+
+jobs-master/fullstack_1/frontend/front-app/node_modules/
+
+\.vscode/
