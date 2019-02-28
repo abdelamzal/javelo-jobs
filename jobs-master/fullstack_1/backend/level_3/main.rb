@@ -16,25 +16,29 @@ class Main
                 #Todo: calucl de excess
                 @milestones.each do |m|
                     if m['objective_id'] == p['objective_id']
-                        dureeTotal = (Date.parse(@objectives[i-1]['end_date']) - Date.parse(@objectives[i-1]['start_date'])).to_f 
+                        dureeTotal = (Date.parse(m['date']) - Date.parse(@objectives[i-1]['start_date'])).to_f 
                         dureeDeTravail = (Date.parse(p['date']) - Date.parse(@objectives[i-1]['start_date'])).to_f
-                        attendu = ( (dureeDeTravail / (dureeTotal)) * (@objectives[i-1]['target'] - @objectives[i-1]['start']) ) + @objectives[i-1]['start']
+                        attendu = ( ( dureeTotal/ (dureeDeTravail)) * (m['target'] - @objectives[i-1]['start']) ) + @objectives[i-1]['start']
                         difference = p['value'] - (attendu)
                         pourcentage = (difference*100.0) / (attendu)
 
-                        dureeDeTravail2 = (Date.parse(m['date']) - Date.parse(@objectives[i-1]['start_date'])).to_f
-                        attendu2 = ( (dureeDeTravail2 / (dureeTotal)) * (@objectives[i-1]['target'] - @objectives[i-1]['start']) ) + @objectives[i-1]['start']
-                        value2 = m['target']
-                        difference2 = value2 - attendu2
-                        pourcentage2 = (difference2*100.0) / (attendu2)
+                        #dureeDeTravail2 = (Date.parse(m['date']) - Date.parse(@objectives[i-1]['start_date'])).to_f
+                        #attendu2 = ( (dureeDeTravail2 / (dureeTotal)) * (@objectives[i-1]['target'] - @objectives[i-1]['start']) ) + @objectives[i-1]['start']
+                        #value2 = m['target']
+                        #difference2 = p['value'] - value2
+                        #pourcentage2 = (difference2*100.0) / (value2)
 
-                        pourcentageT =   (pourcentage - pourcentage2)
+                        #pourcentageT =   ((difference - difference2) * 100.0) /(value2-attendu)
 
                         puts("diff 1 : #{difference}")
-                        puts("diff 2 : #{difference2}")
                         puts("attendu 1 : #{attendu}")
-                        puts("attendu 2 : #{attendu2}")
-                        puts("excess : #{pourcentageT.round}")
+                        puts("excess 1: #{pourcentage.round}")
+
+                        #puts("diff 2 : #{difference2}")
+                        #puts("attendu 2 : #{value2}")
+                        #puts("excess 2: #{pourcentage2.round}")
+
+                        #puts("excess T: #{pourcentageT.round}")
                     end
                 end
                 
