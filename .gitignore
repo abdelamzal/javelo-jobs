@@ -4,3 +4,5 @@
 jobs-master/fullstack_1/frontend/front-app/node_modules/
 
 \.vscode/
+
+jobs-master/fullstack_1/frontend/front-app/package-lock\.json
