@@ -10,13 +10,12 @@ class ObjectivesList extends Component {
         }
     }
     
-    render() { 
-        console.log("taille dans liste ", this.props.objectives.length)
+    render() {
         var listeDesObjectives = null;
-        if(this.props.objectives!=null && this.props.objectives.length>0){
-            listeDesObjectives = this.props.objectives.map(function(node){
-                console.log("passage");
-                return(
+        if(this.props.objectives!=null && this.props.objectives!=undefined){
+            var node = this.props.objectives;
+            listeDesObjectives = (
+                <div style={{display:'flex', flexDirection:'column', justifyContent:'start' ,paddingLeft:(node.id!=1)?'150px':'none',}}>
                     <ObjectivesListItem
                         key={node.id}
                         start_date={node.start_date}
@@ -27,10 +26,10 @@ class ObjectivesList extends Component {
                         current={node.current}
                         title={node.title}
                     />
-                )
-            }.bind(this));
+                    {(node.listEnfant.length > 0 )? node.listEnfant.map(fils => <ObjectivesList objectives={fils} key={fils.id}  TODAY={this.props.TODAY}/>) : false}
+                </div>
+            )
         }
-
         return ( 
             <div>
                 {listeDesObjectives}

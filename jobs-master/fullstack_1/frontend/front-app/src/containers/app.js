@@ -27,6 +27,14 @@ class App extends Component {
       return result;
     }
 
+    arbreObjectives(tab){
+      tab.forEach(node => {
+          node.listEnfant = tab.filter(fils => fils.parent_id == node.id);
+      });
+      return tab.filter(parentZero => parentZero.parent_id == null)[0];
+    };
+
+
   render() {
     //Affichage des objectives Redux Marche 
     console.warn(this.props.objectives)
@@ -52,7 +60,7 @@ class App extends Component {
           </div>
 
           <ObjectivesList
-            objectives={tableauObjectives}
+            objectives={this.arbreObjectives(tableauObjectives)}
             TODAY={TODAY}
           />
 
